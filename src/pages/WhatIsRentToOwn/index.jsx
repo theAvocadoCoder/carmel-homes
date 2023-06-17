@@ -3,7 +3,7 @@ import React from "react";
 
 function WhatIsRentToOwn() {
   return (
-    <div className="mt-24">
+    <div className="mt-20 lg:mt-24">
       <div className="bg-zinc-400 h-[450px] flex justify-center items-center">
         What is Rent to Own Dummy Section 1
       </div>
