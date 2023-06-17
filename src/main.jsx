@@ -24,27 +24,27 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "about-us/",
+        path: "/about-us",
         element: <About />,
       },
       {
-        path: "apply-now/",
+        path: "/apply-now",
         element: <ApplyNow />,
       },
       {
-        path: "what-is-rent-to-own/",
+        path: "/what-is-rent-to-own",
         element: <WhatIsRentToOwn />,
       },
       {
-        path: "faq/",
+        path: "/faq",
         element: <Faq />,
       },
       {
-        path: "partner-with-us/",
+        path: "/partner-with-us",
         element: <PartnerWithUs />,
       },
       {
-        path: "privacy-policy/",
+        path: "/privacy-policy",
         element: <PrivacyPolicy />,
       },
     ],
