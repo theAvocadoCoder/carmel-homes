@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 Button.propTypes = {
   theme: PropTypes.string.isRequired,
-  isNavbarButton: PropTypes.boolean,
+  isNavbarButton: PropTypes.bool,
   children: PropTypes.string.isRequired,
 }
 
