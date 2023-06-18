@@ -74,15 +74,15 @@ function Navbar() {
 
       <dialog ref={contactUsRef} className="backdrop:bg-slate-900/40 w-[min(70vw,35rem)] relative p-16 rounded-md">
         <p className="px-auto text-center text-lg font-semibold mb-8">{"We'd love to hear from you, send us a message"}</p>
-        
+
         <div className="flex flex-wrap gap-8 justify-center">
           {
             /* Contant link URLs, icons and text */
             [
-              ["https://wa.me/19053410200", "whatsapp-logo", "+1 (905) 3410200",],
-              ["tel:+19053410200", "phone-icon", "+1 (905) 3410200",],
-              ["https://www.instagram.com/carmelhomesltd/", "instagram-logo", "@carmelhomesltd",],
-              ["https://www.linkedin.com/company/carmel-homes-ltd/", "linkedin-logo", "Carmel Homes Ltd",],
+              ["https://wa.me/19053410200", "[url(assets/whatsapp-logo-blue.svg)]", "+1 (905) 3410200",],
+              ["tel:+19053410200", "[url(assets/phone-icon-blue.svg)]", "+1 (905) 3410200",],
+              ["https://www.instagram.com/carmelhomesltd/", "[url(assets/instagram-logo-blue.svg)]", "@carmelhomesltd",],
+              ["https://www.linkedin.com/company/carmel-homes-ltd/", "[url(assets/linkedin-logo-blue.svg)]", "Carmel Homes Ltd",],
             ].map((link, index) => (
               <a href={link[0]} key={index} className="flex gap-2 items-center px-1 py-2 border-[5px] border-transparent hover:border-b-brown-primary">
                 <span className={`inline-block h-6 w-6 bg-[url(assets/${link[1]}-blue.svg)] bg-contain bg-center bg-no-repeat`} />
