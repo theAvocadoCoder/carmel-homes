@@ -79,13 +79,13 @@ function Navbar() {
           {
             /* Contant link URLs, icons and text */
             [
-              ["https://wa.me/19053410200", "[url(assets/whatsapp-logo-blue.svg)]", "+1 (905) 3410200",],
-              ["tel:+19053410200", "[url(assets/phone-icon-blue.svg)]", "+1 (905) 3410200",],
-              ["https://www.instagram.com/carmelhomesltd/", "[url(assets/instagram-logo-blue.svg)]", "@carmelhomesltd",],
-              ["https://www.linkedin.com/company/carmel-homes-ltd/", "[url(assets/linkedin-logo-blue.svg)]", "Carmel Homes Ltd",],
+              ["https://wa.me/19053410200", "bg-[url(assets/whatsapp-logo-blue.svg)]", "+1 (905) 3410200",],
+              ["tel:+19053410200", "bg-[url(assets/phone-icon-blue.svg)]", "+1 (905) 3410200",],
+              ["https://www.instagram.com/carmelhomesltd/", "bg-[url(assets/instagram-logo-blue.svg)]", "@carmelhomesltd",],
+              ["https://www.linkedin.com/company/carmel-homes-ltd/", "bg-[url(assets/linkedin-logo-blue.svg)]", "Carmel Homes Ltd",],
             ].map((link, index) => (
               <a href={link[0]} key={index} className="flex gap-2 items-center px-1 py-2 border-[5px] border-transparent hover:border-b-brown-primary">
-                <span className={`inline-block h-6 w-6 bg-${link[1]} bg-contain bg-center bg-no-repeat`} />
+                <span className={`inline-block h-6 w-6 ${link[1]} bg-contain bg-center bg-no-repeat`} />
                 <p className="inline-block">{link[2]}</p>
               </a>
             ))
