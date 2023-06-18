@@ -85,7 +85,7 @@ function Navbar() {
               ["https://www.linkedin.com/company/carmel-homes-ltd/", "[url(assets/linkedin-logo-blue.svg)]", "Carmel Homes Ltd",],
             ].map((link, index) => (
               <a href={link[0]} key={index} className="flex gap-2 items-center px-1 py-2 border-[5px] border-transparent hover:border-b-brown-primary">
-                <span className={`inline-block h-6 w-6 bg-[url(assets/${link[1]}-blue.svg)] bg-contain bg-center bg-no-repeat`} />
+                <span className={`inline-block h-6 w-6 bg-${link[1]} bg-contain bg-center bg-no-repeat`} />
                 <p className="inline-block">{link[2]}</p>
               </a>
             ))
