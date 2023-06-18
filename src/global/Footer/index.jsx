@@ -10,14 +10,18 @@ function Footer() {
         {/* Logo & Write up  */}
         <div className="flex flex-col items-start gap-5 md:w-[40%] lg:w-[min(25%,20rem)]">
           {/* Logo */}
-          <div className="lg:w-[150px] lg:h-[51.52px] w-[80px] h-[33.39px] bg-[url('assets/full-logo-white.svg')] bg-center bg-contain bg-no-repeat" />
+          <Link to="/">
+            <div className="lg:w-[100px] lg:h-[51.52px] w-[80px] h-[33.39px] bg-[url('assets/full-logo-white.svg')] bg-center bg-contain bg-no-repeat" />
+          </Link>
           {/* Write up */}
           <p className="text-xs lg:text-sm font-semibold">
             Home ownership in a few clicks. Get in touch tell us your story, so that we can get an overview of your challenges and support you.
           </p>
-          <Button theme="secondary" isNavbarButton={true}>
-            Apply Now
-          </Button>
+          <Link to="/apply-now/">
+            <Button theme="secondary" isNavbarButton={true}>
+              Apply Now
+            </Button>
+          </Link>
         </div>
 
         {/* Links */}
