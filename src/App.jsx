@@ -4,7 +4,7 @@ import Footer from "global/Footer";
 
 function App() {
   return (
-    <div className="font-raleway">
+    <div className="font-raleway text-blue-primary">
       {/* Navbar */}
       <Navbar />
       {/* Outlet */}
