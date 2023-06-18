@@ -16,7 +16,7 @@ function Button(props) {
   }
 
   return (
-    <button className={`${buttonStates[props.theme]} ${buttonStates.hover} ${buttonStates.disabled} px-4 py-3 font-semibold rounded-[10px] ${props.isNavbarButton && "[font-variant:small-caps]"}`}>
+    <button className={`${buttonStates[props.theme]} ${buttonStates.hover} ${buttonStates.disabled} px-4 py-2 lg:py-3 text-xs lg:text-sm font-bold rounded-[10px] ${props.isNavbarButton && "[font-variant:small-caps]"}`}>
       {props.children}
     </button>
   )
