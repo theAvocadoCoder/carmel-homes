@@ -1,10 +1,19 @@
 //eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import Button from "global/Button";
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const contactUsRef = useRef(null);
+
+  function openContactUsModal() {
+    contactUsRef.current.showModal();
+  }
+
+  function closeContactUsModal() {
+    contactUsRef.current.close();
+  }
 
   return (
     <div className={`flex justify-between items-center lg:items-end w-full h-20 pt-4 px-8 fixed top-0 left-0 ${isSidebarOpen ? "bg-white" : "bg-white"} shadow-md`}>
@@ -17,7 +26,7 @@ function Navbar() {
       <div className={`w-6 h-6 ${isSidebarOpen ? "bg-[url('assets/close-icon.svg')]" : "bg-[url('assets/burger-menu.svg')]"} bg-contain bg-no-repeat flex justify-center items-center text-center p-0 cursor-pointer [-webkit-tap-highlight-color:transparent] lg:hidden`} role="button" onClick={() => setIsSidebarOpen(state => !state)} />
 
       {/* Menu Links */}
-      <div className={`text-[16px] font-semibold flex-col lg:flex-row justify-center items-center gap-8 text-center [font-variant:small-caps] w-screen lg:w-fit h-[calc(100vh-5rem)] lg:h-min bg-stone-200 lg:bg-transparent p-0 absolute lg:static top-20 left-0 ${isSidebarOpen ? "flex bg-white" : "hidden lg:flex bg-white"}`}>
+      <div className={`text-[16px] font-semibold flex-col lg:flex-row justify-center items-center gap-6 text-center [font-variant:small-caps] w-screen lg:w-fit h-[calc(100vh-5rem)] lg:h-min bg-stone-200 lg:bg-transparent p-0 absolute lg:static top-20 left-0 ${isSidebarOpen ? "flex bg-white" : "hidden lg:flex bg-white"}`}>
         {
           /* Navlink names and URLs */
           [
@@ -33,11 +42,13 @@ function Navbar() {
               key={id}
               className={
                 ({ isActive, isPending }) =>
-                  isActive
-                  ? "border-[3px] lg:border-[5px] border-transparent border-b-brown-primary [border-style:none none solid none] px-1 lg:pb-2 lg:mb-3"
-                  : isPending
-                  ? "pending"
-                  : "border-[3px] lg:border-[5px] border-transparent px-1 lg:pb-2 lg:mb-3"
+                  `border-[3px] lg:border-[5px] border-transparent px-1 lg:pb-2 lg:mb-3 ${
+                    isActive
+                    ? "border-b-brown-primary"
+                    : isPending
+                    ? "pending"
+                    : ""
+                  }`
               }
               onClick={() => setIsSidebarOpen(state => !state)}
             >
@@ -48,9 +59,11 @@ function Navbar() {
       </div>
 
       <div className="hidden lg:flex gap-5 mb-4">
-        <Button theme="secondary" isNavbarButton={true}>
-          Contact Us
-        </Button>
+        <div onClick={openContactUsModal}>
+          <Button theme="secondary" isNavbarButton={true}>
+            Contact Us
+          </Button>
+        </div>
 
         <Link to="/apply-now">
           <Button theme="primary" isNavbarButton={true}>
@@ -58,6 +71,29 @@ function Navbar() {
           </Button>
         </Link>
       </div>
+
+      <dialog ref={contactUsRef} className="backdrop:bg-slate-900/40 w-[min(70vw,35rem)] relative p-16 rounded-md">
+        <p className="px-auto text-center text-lg font-semibold mb-8">{"We'd love to hear from you, send us a message"}</p>
+
+        <div className="flex flex-wrap gap-8 justify-center">
+          {
+            /* Contant link URLs, icons and text */
+            [
+              ["https://wa.me/19053410200", "[url(assets/whatsapp-logo-blue.svg)]", "+1 (905) 3410200",],
+              ["tel:+19053410200", "[url(assets/phone-icon-blue.svg)]", "+1 (905) 3410200",],
+              ["https://www.instagram.com/carmelhomesltd/", "[url(assets/instagram-logo-blue.svg)]", "@carmelhomesltd",],
+              ["https://www.linkedin.com/company/carmel-homes-ltd/", "[url(assets/linkedin-logo-blue.svg)]", "Carmel Homes Ltd",],
+            ].map((link, index) => (
+              <a href={link[0]} key={index} className="flex gap-2 items-center px-1 py-2 border-[5px] border-transparent hover:border-b-brown-primary">
+                <span className={`inline-block h-6 w-6 bg-${link[1]} bg-contain bg-center bg-no-repeat`} />
+                <p className="inline-block">{link[2]}</p>
+              </a>
+            ))
+          }
+        </div>
+          
+          <button className="absolute right-4 top-4 h-5 w-5 bg-[url(assets/close-icon.svg)] bg-contain bg-center bg-no-repeat cursor-pointer" onClick={closeContactUsModal} />
+        </dialog>
     </div>
   )
 }
