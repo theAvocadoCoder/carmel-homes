@@ -3,7 +3,7 @@ import React from "react";
 
 function Faq() {
   return (
-    <div className="mt-20 lg:mt-24">
+    <div>
       <div className="bg-zinc-400 h-[450px] flex justify-center items-center">
         FAQ Dummy Section 1
       </div>

@@ -7,9 +7,9 @@ function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className={`flex justify-between items-center w-full h-20 lg:h-24 p-4 fixed top-0 left-0 ${isSidebarOpen ? "bg-white" : "bg-white"} shadow-md`}>
+    <div className={`flex justify-between items-center lg:items-end w-full h-20 pt-4 px-8 fixed top-0 left-0 ${isSidebarOpen ? "bg-white" : "bg-white"} shadow-md`}>
       {/* Logo */}
-      <div className={`lg:w-[150px] lg:h-[51.52px] flex justify-center items-center p-0 text-xs cursor-pointer ${isSidebarOpen ? "w-[37px] h-[33.39px] bg-[url('assets/logo-icon-blue.svg')]" : "w-[80px] h-[33.39px] bg-[url('assets/full-logo-blue.svg')]"} lg:bg-[url('assets/full-logo-blue.svg')] bg-left bg-contain bg-no-repeat`} />
+      <div className={`lg:w-[100px] lg:h-[51.52px] mb-4 cursor-pointer ${isSidebarOpen ? "w-[37px] h-[33.39px] bg-[url('assets/logo-icon-blue.svg')]" : "w-[80px] h-[33.39px] bg-[url('assets/full-logo-blue.svg')]"} lg:bg-[url('assets/full-logo-blue.svg')] bg-center bg-contain bg-no-repeat`} />
 
       {/* Burger Icons */}
       <div className={`w-6 h-6 ${isSidebarOpen ? "bg-[url('assets/close-icon.svg')]" : "bg-[url('assets/burger-menu.svg')]"} bg-contain bg-no-repeat flex justify-center items-center text-center p-0 cursor-pointer [-webkit-tap-highlight-color:transparent] lg:hidden`} role="button" onClick={() => setIsSidebarOpen(state => !state)} />
@@ -32,10 +32,10 @@ function Navbar() {
               className={
                 ({ isActive, isPending }) =>
                   isActive
-                  ? "border-b-2 border-b-brown-primary px-1"
+                  ? "border-[3px] lg:border-[5px] border-transparent border-b-brown-primary [border-style:none none solid none] px-1 lg:pb-2 lg:mb-3"
                   : isPending
                   ? "pending"
-                  : ""
+                  : "border-[3px] lg:border-[5px] border-transparent px-1 lg:pb-2 lg:mb-3"
               }
               onClick={() => setIsSidebarOpen(state => !state)}
             >
@@ -45,7 +45,7 @@ function Navbar() {
         }
       </div>
 
-      <div className="hidden lg:flex gap-5">
+      <div className="hidden lg:flex gap-5 mb-4">
         <Button theme="secondary" isNavbarButton={true}>
           Contact Us
         </Button>

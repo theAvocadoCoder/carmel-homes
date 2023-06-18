@@ -3,7 +3,7 @@ import React from "react";
 
 function About() {
   return (
-    <div className="mt-20 lg:mt-24">
+    <div>
       <div className="bg-zinc-400 h-[450px] flex justify-center items-center">
         About Us Dummy Section 1
       </div>

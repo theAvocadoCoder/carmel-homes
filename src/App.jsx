@@ -8,7 +8,9 @@ function App() {
       {/* Navbar */}
       <Navbar />
       {/* Outlet */}
-      <Outlet />
+      <div className="mt-20">
+        <Outlet />
+      </div>
       {/* Footer */}
       <Footer />
     </div>
