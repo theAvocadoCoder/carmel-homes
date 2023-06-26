@@ -6,6 +6,7 @@ import HowWeWork from "./sections/HowWeWork";
 import WhatIsRTO from "./sections/WhatIsRTO";
 import WhatYouGet from "./sections/WhatYouGet";
 import Investment from "./sections/Investment";
+import BeginJourney from "global/BeginJourney";
 
 function Homepage() {
   return (
@@ -25,8 +26,8 @@ function Homepage() {
       <div className="">
         <Investment />
       </div>
-      <div className="bg-blue-950 h-[450px] flex justify-center items-center text-white">
-        Home Dummy Section 6
+      <div className="">
+        <BeginJourney />
       </div>
     </div>
   )
