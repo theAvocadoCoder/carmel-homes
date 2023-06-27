@@ -18,7 +18,7 @@ function HowWeWork() {
             className="w-32 h-32 bg-[url('homepage/how-we-work-2.webp')] bg-contain bg-no-repeat"
             role="img"
           />
-          <p className="text-center">We find properties for you for you</p>
+          <p className="text-center">We find properties for you</p>
         </div>
         <div className="flex flex-col items-center text-lg [line-height:1] font-semibold gap-6 w-60">
           <div
