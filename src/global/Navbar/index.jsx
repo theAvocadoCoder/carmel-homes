@@ -8,6 +8,7 @@ function Navbar() {
   const contactUsRef = useRef(null);
 
   function openContactUsModal() {
+    setIsSidebarOpen(state => !state); 
     contactUsRef.current.showModal();
   }
 
@@ -26,36 +27,43 @@ function Navbar() {
       <div className={`w-6 h-6 ${isSidebarOpen ? "bg-[url('assets/close-icon.svg')]" : "bg-[url('assets/burger-menu.svg')]"} bg-contain bg-no-repeat flex justify-center items-center text-center p-0 cursor-pointer [-webkit-tap-highlight-color:transparent] lg:hidden`} role="button" onClick={() => setIsSidebarOpen(state => !state)} />
 
       {/* Menu Links */}
-      <div className={`text-[16px] font-semibold flex-col lg:flex-row justify-center items-center gap-6 lg:gap-3 xl:gap-6 text-center [font-variant:small-caps] w-screen lg:w-fit h-[calc(100vh-5rem)] lg:h-min bg-stone-200 lg:bg-transparent p-0 absolute lg:static top-20 left-0 ${isSidebarOpen ? "flex bg-white" : "hidden lg:flex bg-white"}`}>
-        {
-          /* Navlink names and URLs */
-          [
-            ["Home", "/"],
-            ["Rent to Own?", "/what-is-rent-to-own"],
-            ["About Us", "/about-us"],
-            ["Faq", "/faq"],
-            ["Apply Now", "/apply-now"],
-            ["Investment", "/partner-with-us"],
-          ].map((link, id) => (
-            <NavLink
-              to={link[1]}
-              key={id}
-              className={
-                ({ isActive, isPending }) =>
-                  `border-[3px] lg:border-[5px] border-transparent px-1 lg:pb-2 lg:mb-3 ${
-                    isActive
-                    ? "border-b-brown-primary"
-                    : isPending
-                    ? "pending"
-                    : ""
-                  }`
-              }
-              onClick={() => setIsSidebarOpen(state => !state)}
-            >
-              {link[0]}
-            </NavLink>
-          ))
-        }
+      <div className={`flex-col justify-evenly items-center pb-10 lg:pb-0 text-[16px] font-semibold [font-variant:small-caps] w-screen lg:w-fit h-[calc(100vh-5rem)] lg:h-min bg-stone-200 lg:bg-transparent p-0 absolute lg:static top-20 left-0 ${isSidebarOpen ? "flex bg-white" : "hidden lg:flex bg-white"}`}>
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-3 xl:gap-6 h-full text-center">
+          {
+            /* Navlink names and URLs */
+            [
+              ["Home", "/"],
+              ["Rent to Own?", "/what-is-rent-to-own"],
+              ["About Us", "/about-us"],
+              ["Faq", "/faq"],
+              ["Apply Now", "/apply-now"],
+              ["Investment", "/partner-with-us"],
+            ].map((link, id) => (
+              <NavLink
+                to={link[1]}
+                key={id}
+                className={
+                  ({ isActive, isPending }) =>
+                    `border-[3px] lg:border-[5px] border-transparent px-1 lg:pb-2 lg:mb-3 ${
+                      isActive
+                      ? "border-b-brown-primary"
+                      : isPending
+                      ? "pending"
+                      : ""
+                    }`
+                }
+                onClick={() => setIsSidebarOpen(state => !state)}
+              >
+                {link[0]}
+              </NavLink>
+            ))
+          }
+        </div>
+        <div className="lg:hidden" onClick={openContactUsModal}>
+          <Button theme="primary" isNavbarButton={true}>
+            Contact Us
+          </Button>
+        </div>
       </div>
 
       <div className="hidden lg:flex gap-5 mb-4">
@@ -92,8 +100,8 @@ function Navbar() {
           }
         </div>
           
-          <button className="absolute right-4 top-4 h-5 w-5 bg-[url(assets/close-icon.svg)] bg-contain bg-center bg-no-repeat cursor-pointer" onClick={closeContactUsModal} />
-        </dialog>
+        <button className="absolute right-4 top-4 h-5 w-5 bg-[url(assets/close-icon.svg)] bg-contain bg-center bg-no-repeat cursor-pointer" onClick={closeContactUsModal} />
+      </dialog>
     </div>
   )
 }
