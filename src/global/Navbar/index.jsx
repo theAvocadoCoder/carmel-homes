@@ -7,6 +7,33 @@ function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const contactUsRef = useRef(null);
 
+  const contactUsLinks = [
+    {
+      url: "https://wa.me/19053410200",
+      icon: "bg-[url(assets/whatsapp-logo-blue.svg)]",
+      text: "+1 (905) 3410200",
+      alt: "whatsapp logo",
+    },
+    {
+      url: "tel:+19053410200",
+      icon: "bg-[url(assets/phone-icon-blue.svg)]",
+      text: "+1 (905) 3410200",
+      alt: "phone",
+    },
+    {
+      url: "https://www.instagram.com/carmelhomesltd/",
+      icon: "bg-[url(assets/instagram-logo-blue.svg)]",
+      text: "@carmelhomesltd",
+      alt: "instagram logo",
+    },
+    {
+      url: "https://www.linkedin.com/company/carmel-homes-ltd/",
+      icon: "bg-[url(assets/linkedin-logo-blue.svg)]",
+      text: "Carmel Homes Ltd",
+      alt: "linkedin logo",
+    },
+  ]
+
   function openContactUsModal() {
     setIsSidebarOpen(state => !state); 
     contactUsRef.current.showModal();
@@ -17,18 +44,18 @@ function Navbar() {
   }
 
   return (
-    <div className={`flex justify-between items-center lg:items-end w-full h-20 pt-4 px-6 fixed top-0 left-0 ${isSidebarOpen ? "bg-white" : "bg-white"} shadow-md`}>
+    <nav className={`flex justify-between items-center lg:items-end w-full h-20 pt-4 px-6 fixed top-0 left-0 ${isSidebarOpen ? "bg-white" : "bg-white"} shadow-md`}>
       {/* Logo */}
       <Link to="/">
-        <div className={`lg:w-[100px] lg:h-[51.52px] mb-4 cursor-pointer ${isSidebarOpen ? "w-[37px] h-[33.39px] bg-[url('assets/logo-icon-blue.svg')]" : "w-[80px] h-[33.39px] bg-[url('assets/full-logo-blue.svg')]"} lg:bg-[url('assets/full-logo-blue.svg')] bg-center bg-contain bg-no-repeat`} />
+        <div className={`lg:w-[100px] lg:h-[51.52px] mb-4 cursor-pointer ${isSidebarOpen ? "w-[37px] h-[33.39px] bg-[url('assets/logo-icon-blue.svg')]" : "w-[80px] h-[33.39px] bg-[url('assets/full-logo-blue.svg')]"} lg:bg-[url('assets/full-logo-blue.svg')] bg-center bg-contain bg-no-repeat`} role="img" aria-roledescription="Carmel Homes Ltd logo" />
       </Link>
 
       {/* Burger Icons */}
-      <div className={`w-6 h-6 ${isSidebarOpen ? "bg-[url('assets/close-icon.svg')]" : "bg-[url('assets/burger-menu.svg')]"} bg-contain bg-no-repeat flex justify-center items-center text-center p-0 cursor-pointer [-webkit-tap-highlight-color:transparent] lg:hidden`} role="button" onClick={() => setIsSidebarOpen(state => !state)} />
+      <button type="button" className={`w-6 h-6 ${isSidebarOpen ? "bg-[url('assets/close-icon.svg')]" : "bg-[url('assets/burger-menu.svg')]"} bg-contain bg-no-repeat flex justify-center items-center text-center p-0 [-webkit-tap-highlight-color:transparent] lg:hidden`} onClick={() => setIsSidebarOpen(state => !state)} />
 
       {/* Menu Links */}
       <div className={`flex-col justify-evenly items-center pb-10 lg:pb-0 text-[16px] font-semibold [font-variant:small-caps] w-screen lg:w-fit h-[calc(100vh-5rem)] lg:h-min bg-stone-200 lg:bg-transparent p-0 absolute lg:static top-20 left-0 ${isSidebarOpen ? "flex bg-white" : "hidden lg:flex bg-white"}`}>
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-3 xl:gap-6 h-full text-center">
+        <ul className="flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-3 xl:gap-6 h-full text-center">
           {
             /* Navlink names and URLs */
             [
@@ -58,7 +85,7 @@ function Navbar() {
               </NavLink>
             ))
           }
-        </div>
+        </ul>
         <div className="lg:hidden" onClick={openContactUsModal}>
           <Button theme="primary" isNavbarButton={true}>
             Contact Us
@@ -80,21 +107,16 @@ function Navbar() {
         </Link>
       </div>
 
-      <dialog ref={contactUsRef} className="backdrop:bg-slate-900/40 w-[min(70vw,35rem)] relative p-16 rounded-md">
-        <p className="px-auto text-center text-lg font-semibold mb-8">{"We'd love to hear from you, send us a message"}</p>
+      <dialog ref={contactUsRef} className="backdrop:bg-slate-900/40 w-[min(70vw,55rem)] relative px-6 py-12 md:p-16 rounded-md">
+        <p className="px-auto text-center text-lg xl:text-2xl font-semibold mb-8">{"We'd love to hear from you, send us a message"}</p>
 
-        <div className="flex flex-wrap gap-8 justify-center">
+        <div className="flex flex-col md:flex-row md:flex-wrap justify-center gap-8 lg:gap-10">
           {
-            /* Contant link URLs, icons and text */
-            [
-              ["https://wa.me/19053410200", "bg-[url(assets/whatsapp-logo-blue.svg)]", "+1 (905) 3410200",],
-              ["tel:+19053410200", "bg-[url(assets/phone-icon-blue.svg)]", "+1 (905) 3410200",],
-              ["https://www.instagram.com/carmelhomesltd/", "bg-[url(assets/instagram-logo-blue.svg)]", "@carmelhomesltd",],
-              ["https://www.linkedin.com/company/carmel-homes-ltd/", "bg-[url(assets/linkedin-logo-blue.svg)]", "Carmel Homes Ltd",],
-            ].map((link, index) => (
-              <a href={link[0]} key={index} className="flex gap-2 items-center px-1 py-2 border-[5px] border-transparent hover:border-b-brown-primary">
-                <span className={`inline-block h-6 w-6 ${link[1]} bg-contain bg-center bg-no-repeat`} />
-                <p className="inline-block">{link[2]}</p>
+            /* Contact links */
+            contactUsLinks.map((link, index) => (
+              <a href={link.url} target="_blank" rel="noreferrer" key={index} className="flex gap-2 items-center px-1 py-2 border-[5px] border-transparent hover:border-b-brown-primary">
+                <span className={`inline-block h-6 w-6 xl:h-10 xl:w-10 ${link.icon} bg-contain bg-center bg-no-repeat`}  role="img" aria-roledescription={`${link.alt} icon`} />
+                <p className="inline-block xl:text-xl font-semibold">{link.text}</p>
               </a>
             ))
           }
@@ -102,7 +124,7 @@ function Navbar() {
           
         <button className="absolute right-4 top-4 h-5 w-5 bg-[url(assets/close-icon.svg)] bg-contain bg-center bg-no-repeat cursor-pointer" onClick={closeContactUsModal} />
       </dialog>
-    </div>
+    </nav>
   )
 }
 

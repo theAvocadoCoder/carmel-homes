@@ -10,26 +10,14 @@ import BeginJourney from "global/BeginJourney";
 
 function Homepage() {
   return (
-    <div>
-      <div className="">
-        <Hero />
-      </div>
-      <div className="">
-        <HowWeWork />
-      </div>
-      <div className="">
-        <WhatIsRTO />
-      </div>
-      <div className="">
-        <WhatYouGet />
-      </div>
-      <div className="">
-        <Investment />
-      </div>
-      <div className="">
-        <BeginJourney />
-      </div>
-    </div>
+    <>
+      <Hero />
+      <HowWeWork />
+      <WhatIsRTO />
+      <WhatYouGet />
+      <Investment />
+      <BeginJourney />
+    </>
   )
 }
 

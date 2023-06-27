@@ -3,7 +3,7 @@ import Button from "global/Button";
 
 function Footer() {
   return (
-    <div className="bg-blue-primary text-white flex flex-col gap-10 lg:gap-[100px] px-6 lg:px-[min(100px,4vw)] py-8 pb-0 lg:py-[100px] lg:pb-0">
+    <footer className="bg-blue-primary text-white flex flex-col gap-10 lg:gap-[100px] px-6 lg:px-[min(100px,4vw)] py-8 pb-0 lg:py-[100px] lg:pb-0">
       {/* Content */}
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-[100px] lg:justify-evenly">
         
@@ -11,7 +11,7 @@ function Footer() {
         <div className="flex flex-col items-start gap-5 md:w-[40%] lg:w-[min(25%,20rem)]">
           {/* Logo */}
           <Link to="/">
-            <div className="lg:w-[100px] lg:h-[51.52px] w-[80px] h-[33.39px] bg-[url('assets/full-logo-white.svg')] bg-center bg-contain bg-no-repeat" />
+            <div className="lg:w-[100px] lg:h-[51.52px] w-[80px] h-[33.39px] bg-[url('assets/full-logo-white.svg')] bg-center bg-contain bg-no-repeat" role="img" aria-roledescription="Carmel Homes Ltd logo" />
           </Link>
           {/* Write up */}
           <p className="text-xs lg:text-sm font-semibold">
@@ -70,7 +70,7 @@ function Footer() {
           Copyright © 2023 Carmel Homes Ltd
         </p>
       </div>
-    </div>
+    </footer>
   )
 }
 
