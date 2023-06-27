@@ -10,8 +10,8 @@ function WhatIsRentToOwn() {
       <div className="bg-blue-950 h-[450px] flex justify-center items-center text-white">
         What is Rent to Own Dummy Section 2
       </div>
-      <div className="bg-stone-400 h-[450px] flex justify-center items-center">
-        What is Rent to Own Dummy Section 3
+      <div id="how-it-works" className="bg-stone-400 h-[450px] flex justify-center items-center">
+        How It Works!
       </div>
       <div className="bg-slate-950 h-[450px] flex justify-center items-center text-white">
         What is Rent to Own Dummy Section 4
