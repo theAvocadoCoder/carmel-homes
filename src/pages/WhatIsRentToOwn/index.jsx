@@ -1,24 +1,15 @@
-//eslint-disable-next-line no-unused-vars
-import React from "react";
+import BeginJourney from "global/BeginJourney";
+import WhoCanUseRTO from "./sections/WhoCanUseRTO";
+import HowDoesItWork from "./sections/HowDoesItWork";
 
 function WhatIsRentToOwn() {
   return (
     <div>
-      <div className="bg-zinc-400 h-[450px] flex justify-center items-center">
-        What is Rent to Own Dummy Section 1
+      <WhoCanUseRTO />
+      <div id="how-it-works">
+        <HowDoesItWork />
       </div>
-      <div className="bg-blue-950 h-[450px] flex justify-center items-center text-white">
-        What is Rent to Own Dummy Section 2
-      </div>
-      <div id="how-it-works" className="bg-stone-400 h-[450px] flex justify-center items-center">
-        How It Works!
-      </div>
-      <div className="bg-slate-950 h-[450px] flex justify-center items-center text-white">
-        What is Rent to Own Dummy Section 4
-      </div>
-      <div className="bg-white h-[450px] flex justify-center items-center">
-        What is Rent to Own Dummy Section 5
-      </div>
+      <BeginJourney />
     </div>
   )
 }
