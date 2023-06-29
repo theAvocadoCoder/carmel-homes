@@ -44,7 +44,7 @@ function Navbar() {
   }
 
   return (
-    <nav className={`flex justify-between items-center lg:items-end w-full h-20 pt-4 px-6 fixed top-0 left-0 ${isSidebarOpen ? "bg-white" : "bg-white"} shadow-md`}>
+    <nav className={`z-10 flex justify-between items-center lg:items-end w-full h-20 pt-4 px-6 fixed top-0 left-0 ${isSidebarOpen ? "bg-white" : "bg-white"} shadow-md`}>
       {/* Logo */}
       <Link to="/">
         <div className={`lg:w-[100px] lg:h-[51.52px] mb-4 cursor-pointer ${isSidebarOpen ? "w-[37px] h-[33.39px] bg-[url('assets/logo-icon-blue.svg')]" : "w-[80px] h-[33.39px] bg-[url('assets/full-logo-blue.svg')]"} lg:bg-[url('assets/full-logo-blue.svg')] bg-center bg-contain bg-no-repeat`} role="img" aria-roledescription="Carmel Homes Ltd logo" />
