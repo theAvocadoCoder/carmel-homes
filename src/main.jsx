@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import App from "./App";
 import Homepage from "./pages/Homepage";
-import About from "./pages/About";
+import AboutUs from "./pages/AboutUs";
 import ApplyNow from "./pages/ApplyNow";
 import WhatIsRentToOwn from "./pages/WhatIsRentToOwn";
 import PartnerWithUs from "./pages/PartnerWithUs";
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/about-us",
-        element: <About />,
+        element: <AboutUs />,
       },
       {
         path: "/apply-now",
