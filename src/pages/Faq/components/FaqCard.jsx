@@ -14,7 +14,9 @@ function FaqCard(props) {
       </summary>
       <p className="w-[85vw] md:w-[40vw] xl:max-w-[30rem] mt-3">
         {props.faq.details}
-        {props.faq.link && props.faq.link}
+        {props.faq.link && (
+          <span className="text-brown-primary font-bold">{props.faq.link}</span>
+        )}
         {props.faq.postLinkText && props.faq.postLinkText}
       </p>
     </details>
