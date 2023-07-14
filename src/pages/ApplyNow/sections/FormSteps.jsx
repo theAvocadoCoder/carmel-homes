@@ -183,7 +183,7 @@ function FormSteps() {
                       <div className="flex flex-col self-end md:self-auto w-[clamp(10rem,70%,18rem)] p-1">
                         {
                           input.options.map((option, index) => (
-                            <div key={index} className="flex gap-2">
+                            <div key={index} className="flex gap-2 items-center">
                               {renderInput(input, index)}
                               <label htmlFor={option.value}>{ option.label }</label>
                             </div>
