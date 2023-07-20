@@ -4,28 +4,32 @@ const formStepDetails = [
     inputs: [
       [
         {
+          required() {return `Please input your ${this.label.toLowerCase()}`},
           type: "text",
-          name: "first-name",
+          name: "firstName",
           label: "First Name",
           placeholder: "Ex. John",
         },
         {
+          required() {return `Please input your ${this.label.toLowerCase()}`},
           type: "text",
-          name: "last-name",
+          name: "lastName",
           label: "Last Name",
           placeholder: "Ex. Doe",
         },
       ],
       [
         {
+          required() {return `Please input your ${this.label.toLowerCase()}`},
           type: "email",
-          name: "email-address",
+          name: "emailAddress",
           label: "Email Address",
           placeholder: "youremail@address.com",
         },
         {
+          required() {return `Please input your ${this.label.toLowerCase()}`},
           type: "tel",
-          name: "phone-number",
+          name: "phoneNumber",
           label: "Phone Number",
           placeholder: "Ex. 90534100",
         },
@@ -60,7 +64,7 @@ const formStepDetails = [
       },
       {
         type: "select",
-        name: "source-of-income",
+        name: "sourceOfIncome",
         label: "Primary source of income?",
         options: [
           { value: "employed", text: "Employed" },
@@ -70,7 +74,7 @@ const formStepDetails = [
       },
       {
         type: "checkbox",
-        name: "debt-status",
+        name: "debtStatus",
         label: "Select all that apply to you",
         options: [
           {value: "consumer_proposal", label: "Consumer Proposal"},
@@ -82,7 +86,7 @@ const formStepDetails = [
       [
         {
           type: "number",
-          name: "pre-tax-income",
+          name: "preTaxIncome",
           label: "Annual house income before tax?",
           placeholder: "Ex. 500,000",
           noLayoutChange: true,
@@ -102,7 +106,7 @@ const formStepDetails = [
     inputs: [
       {
         type: "select",
-        name: "credit-score",
+        name: "creditScore",
         label: "What is your credit score?",
         options: [
           {
@@ -125,7 +129,7 @@ const formStepDetails = [
       },
       {
         type: "select",
-        name: "marital-status",
+        name: "maritalStatus",
         label: "What is your marital status?",
         options: [
           {
@@ -148,7 +152,7 @@ const formStepDetails = [
       },
       {
         type: "select",
-        name: "how-did-you-hear-about-us",
+        name: "howDidYouHearAboutUs",
         label: "How did you hear about us?",
         options: [
           {
@@ -171,7 +175,7 @@ const formStepDetails = [
       },
       {
         type: "text",
-        name: "other-how-did-you-hear-about-us",
+        name: "otherHowDidYouHearAboutUs",
         label: "Other",
         placeholder: "Ex. LinkedIn",
         other: true,
@@ -183,8 +187,9 @@ const formStepDetails = [
     inputs: [
       [
         {
+          required() {return `Please input your ${this.label.toLowerCase()}`},
           type: "select",
-          name: "method-of-contact",
+          name: "methodOfContact",
           label: "Preferred method of contact",
           options: [
             {
@@ -207,14 +212,14 @@ const formStepDetails = [
         },
         {
           type: "date",
-          name: "move-in-date",
+          name: "moveInDate",
           label: "Target move in date",
         },
       ],
       [
         {
           type: "select",
-          name: "preferred-province",
+          name: "preferredProvince",
           label: "Select the province you want to live in",
           options: [
             {
@@ -277,7 +282,7 @@ const formStepDetails = [
         },
         {
           type: "text",
-          name: "preferred-cities",
+          name: "preferredCities",
           label: "List all cities you would like to live in",
           placeholder: "Ex. Toronto, Ottawa, Hamilton",
         },

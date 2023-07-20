@@ -1,30 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormSlider from "../components/FormSlider";
 import FormButtons from "../components/FormButtons";
 import FormSubmitted from "../components/FormSubmitted";
 import { formStepDetails as details } from "../formStepDetails";
+import { useForm, Controller } from "react-hook-form";
+// import { ErrorMessage } from "@hookform/error-message";
+import { PhoneInput } from "react-simple-phone-input";
+import "react-simple-phone-input/dist/style.css";
 
 function FormSteps() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isFormSubmitted, toggleIsFormSubmitted] = useState(false);
-  const [formValues, setFormValues] = useState({
-    "first-name": "",
-    "last-name": "",
-    "email-address": "",
-    "phone-number": "",
-    "status": "",
-    "source-of-income": "",
-    "debt-status": [],
-    "pre-tax-income": "",
-    "downpayment": "",
-    "credit-score": "",
-    "marital-status": "",
-    "how-did-you-hear-about-us": "",
-    "method-of-contact": "",
-    "move-in-date": "",
-    "preferred-province": "",
-    "preferred-cities": "",
-  })
+
+  //eslint-disable-next-line no-unused-vars
+  const { handleSubmit, register, control, formState: {errors}, watch, setValue } = useForm({
+    defaultValues: {
+      "firstName": "",
+      "lastName": "",
+      "emailAddress": "",
+      "phoneNumber": "",
+      "status": "",
+      "sourceOfIncome": "",
+      "debtStatus": {
+        bankruptcy: "",
+        consumer_proposal: "",
+        foreclosure: "",
+        none: ""
+      },
+      "preTaxIncome": "",
+      "downpayment": "",
+      "creditScore": "",
+      "maritalStatus": "",
+      "howDidYouHearAboutUs": "",
+      "otherHowDidYouHearAboutUs": "",
+      "methodOfContact": "",
+      "moveInDate": "",
+      "preferredProvince": "",
+      "preferredCities": "",
+    }
+  });
+  const formValues = watch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentStep, isFormSubmitted]);
+
+  function onSubmit(data, e) {
+    console.log("onSubmit was triggered");
+    console.log("data", data);
+    console.log("e", e);
+    toggleIsFormSubmitted(state => !state);
+  }
+
+  function onError(errors) {
+    console.log("onError was triggered");
+    if (errors["methodOfContact"]) {
+      setCurrentStep(state => {if (state) return 4});
+    } else {
+      setCurrentStep(state => {if (state) return 1})
+    }
+  }
 
   function renderInput(input,checkboxIndex) {
     switch (input.type) {      
@@ -33,7 +68,7 @@ function FormSteps() {
           <>
             <div className="bg-[url('assets/chevron-bottom.svg')] bg-no-repeat bg-center bg-contain w-4 h-4 right-[1.2rem] bottom-[1.3rem] absolute z-[2]" role="img" aria-roledescription="icon" />
             <select
-              required
+              {...register(input.name, {required: input.required ? input.required() : false})}
               className={`
                 bg-white
                 rounded-md
@@ -41,19 +76,10 @@ function FormSteps() {
                 appearance-none relative
                 ${formValues[input.name] == "" && "text-gray-400"}
                 w-full
-                md:w-[clamp(18rem,${input.name == "preferred-province" || input.name == "method-of-contact" ? "99%" : "45%"},40rem)]
+                md:w-[clamp(18rem,${input.name == "preferredProvince" || input.name == "methodOfContact" ? "99%" : "45%"},40rem)]
               `}
               name={input.name}
               id={input.name}
-              value={formValues[input.name]} 
-              onChange={
-                (e) => (setFormValues(current => (
-                  {
-                    ...current,
-                    [input.name]: e.target.value
-                  }
-                )))
-              }
             >
               <option value="" className="text-gray-400">--Please pick an option--</option>
               {
@@ -69,28 +95,13 @@ function FormSteps() {
         return (
           <>
             <input
-              required
-              id={input.options[checkboxIndex].value}
+              {...register(`debtStatus.${input.options[checkboxIndex].value}`)}
+              onChange={(e) => {setValue(`debtStatus.${input.options[checkboxIndex].value}`, e.target.checked)}}
+              id={input.name}
               name={input.options[checkboxIndex].value}
               type={input.type}
               placeholder={input.placeholder}
               className="border-2 border-brown-gray rounded-md form-checkbox text-brown-primary focus:outline-brown-accent"
-              value={formValues[input.name][checkboxIndex]}
-              onChange={
-                (e) => (setFormValues(current => {
-                  let valuesArray = [...current[input.name]];
-                  if (valuesArray.includes(e.target.value)) {
-                    let valueIndex = valuesArray.indexOf(e.target.value);
-                    valuesArray.splice(valueIndex, 1);
-                  } else {
-                    valuesArray.push(e.target.value)
-                  }
-                  return {
-                    ...current,
-                    [input.name]: valuesArray
-                  }
-              }))
-              }
             />
           </>
         );
@@ -98,22 +109,23 @@ function FormSteps() {
       case "tel":
         return (
           <>
-            <input 
-              required
-              id={input.name} 
-              name={input.name} 
-              type={input.type} 
-              placeholder={input.placeholder} 
-              className="bg-white rounded-md p-2 w-full" 
-              value={formValues[input.name]} 
-              onChange={
-                (e) => (setFormValues(current => (
-                  {
-                    ...current,
-                    [input.name]: e.target.value
-                  }
-                )))
-              }
+            <Controller 
+              name={input.name}
+              control={control}
+              rules={{  required: input.required ? input.required() : false }}
+              render={({field: { onChange, value }}) => (
+                <PhoneInput 
+                  country="CA"
+                  placeholder={input.placeholder}
+                  value={value}
+                  inputProps={{ id: input.name }}
+                  onChange={onChange}
+                  showDropdownIcon={false}
+                  inputClass="p-2 w-full rounded-r-md focus-visible:[outline:-[-webkit-focus-ring-color_auto_1px]"
+                  containerClass="[&>div]:border-none bg-white rounded-md [&>div>div]:bg-transparent [&>div>div]:border-none"
+                  buttonClass="[&>span]:text-right"
+                />
+              )}
             />
           </>
         );
@@ -122,29 +134,29 @@ function FormSteps() {
         return (
           <>
             <input 
-              required
+              {...register(input.name, {
+                required: input.required ? input.required() : false,
+                valueAsNumber: input.type == "number" || false,
+                minLength: {
+                  value: input.type == "text" && 2,
+                  message: input.type == "text" && "Please enter a name of at least 2 characters",
+                },
+                pattern: {
+                  value: input.type == "email" && (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/),
+                  message: input.type == "email" && "Please enter a valid email address",
+                }
+              })}
               id={input.name} 
               name={input.name} 
               type={input.type} 
               placeholder={input.placeholder} 
-              className={`bg-white rounded-md p-2 w-full`} 
-              value={formValues[input.name]} 
-              min={new Date().toString()}
-              onChange={
-                (e) => (setFormValues(current => (
-                  {
-                    ...current,
-                    [input.name]: e.target.value
-                  }
-                )))
-              }
+              className={`bg-white rounded-md p-2 w-full`}
             />
           </>
         );
     }
   }
 
-  //eslint-disable-next-line no-unused-vars
   function renderStep(step) {
 
     return (
@@ -159,9 +171,10 @@ function FormSteps() {
                     input.map((field, fieldIndex) => {
                       lgLayout = (step.step == 3 || (step.step == 2 && !field.noLayoutChange)) ? "md:flex-row md:w-full md:justify-between" : "";
                       return (
-                        <label className={`flex flex-col ${lgLayout} p-2 relative w-full md:w-[clamp(18rem,45%,40rem)] justify-between`} key={fieldIndex} htmlFor={input.name}>
-                          <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{field.label}: </span>
+                        <label className={`relative flex flex-col ${lgLayout} p-2 ${field.required && errors[field.name] ? "mb-10" : ""} relative w-full md:w-[clamp(18rem,45%,40rem)] justify-start`} key={fieldIndex} htmlFor={field.name}>
+                          <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{`${field.label}${field.required ? "*": ""}`}: </span>
                           {renderInput(field)}
+                          {errors[field.name] && (<span className={`absolute top-[100%] text-red-600 text-sm w-full md:w-[clamp(10rem,90%,18rem)]`} role="alert">*{errors[field.name].message}</span>)}
                         </label>
                       );
                     })
@@ -172,7 +185,7 @@ function FormSteps() {
               lgLayout = (step.step == 3 || (step.step == 2 && !input.noLayoutChange)) ? "md:flex-row md:justify-between md:gap-2" : "";
               return (
                 input.type != "checkbox" ? (
-                  <label className={`flex flex-col ${lgLayout} p-2 relative justify-between w-full ${input.other && formValues["how-did-you-hear-about-us"] == "other" ? "block" : input.other ? "hidden" : ""}`} key={index} htmlFor={input.name}>
+                  <label className={`flex flex-col ${lgLayout} p-2 relative justify-between w-full ${input.other && formValues["howDidYouHearAboutUs"] == "other" ? "block" : input.other ? "hidden" : ""}`} key={index} htmlFor={input.name}>
                     <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{input.label}: </span>
                     {renderInput(input)}
                   </label>
@@ -203,7 +216,7 @@ function FormSteps() {
   }
   
   return (
-    <div className="relative bg-white p-5 lg:p-10 w-full lg:w-[clamp(20rem,60%,50rem)] rounded-xl shadow-lg lg:shadow-xl shadow-brown-gray/50 flex flex-col justify-between">
+    <div className="relative bg-white p-5 pb-10 lg:p-10 w-full lg:w-[clamp(20rem,60%,50rem)] rounded-xl shadow-lg lg:shadow-xl shadow-brown-gray/50 flex flex-col justify-between">
       <div className={`z-[1] w-full h-full rounded-xl ${isFormSubmitted ? "bg-brown-accent/[.26]" : "bg-brown-accent/20"} absolute left-0 top-0 pointer-events-none`} />
       {
         !isFormSubmitted
@@ -213,13 +226,15 @@ function FormSteps() {
               <FormSlider currentStep={currentStep} setCurrentStep={setCurrentStep} />
 
               {/* Step Form */}
-              <form className="z-[2]">
+              <form className="z-[2]" onSubmit={handleSubmit(onSubmit, onError)}>
                 {
                   details.map(renderStep)
                 }
+                <FormButtons currentStep={currentStep} setCurrentStep={setCurrentStep} />
               </form>
 
-              <FormButtons currentStep={currentStep} setCurrentStep={setCurrentStep} toggleIsFormSubmitted={toggleIsFormSubmitted} />
+              {/* Required Fields Info Text */}
+              <span className="z-[2] absolute bottom-2 pointer-events-none text-xs font-semibold">*Required fields</span>
             </>
           )
           : (
