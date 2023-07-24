@@ -29,8 +29,8 @@ function Partners() {
           <div className={`flex ${index%2!=0?"flex-row-reverse text-left":"text-right"} justify-center xl:justify-start xl:flex-col xl:items-center xl:text-center gap-10 xl:gap-4 w-full xl:w-[clamp(10rem,20%,12.5rem] xl:max-w-[12.5rem] h-fit`} key={index}>
               <div className={`${partner.icon} bg-center bg-contain bg-no-repeat w-12 sm:w-14 md:w-16 lg:w-20 h-12 sm:h-14 md:h-16 lg:h-20 inline-block`} />
               <div className="w[12.5rem] w-full inline-block [line-height:1.2rem]">
-                <p className="font-bold">{partner.title}</p>
-                <p>{partner.details}</p>
+                <p className="font-bold text-[1.2rem]">{partner.title}</p>
+                <p className="text-[0.75rem] [line-height:1rem]">{partner.details}</p>
               </div>
             </div>
         ))
