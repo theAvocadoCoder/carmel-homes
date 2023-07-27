@@ -21,6 +21,7 @@ export default defineConfig({
     alias: {
       ...filePaths,
       ...pageImgPaths,
+      "src": "/src/"
     }
   }
 })
