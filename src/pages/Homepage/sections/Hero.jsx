@@ -1,11 +1,28 @@
+import { useState, useRef, useEffect } from "react";
 import Button from "global/Button";
 import { Link } from "react-router-dom";
-// import whiteCouple from "homepage/white-couple.png";
+import whiteCouple from "homepage/white-couple.png";
 
 function Hero() {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    }, {
+      rootMargin: "-150px"
+    });
+    observer.observe(heroRef.current);
+  
+    return () => {
+      observer.disconnect();
+    }
+  }, [])
+
   return (
-    <section className="[background-blend-mode:multiply] bg-slate-500 bg-[url('homepage/hero.png')] bg-cover bg-center bg-no-repeat w-full lg:h-[600px] flex justify-evenly">
-      <div className="flex flex-col gap-6 md:max-w-[50%] lg:max-w-[37%] px-[clamp(1.25rem,7%,2.5rem)] py-28 md:pt-40 self-center">
+    <section ref={heroRef} className={`[background-blend-mode:overlay] bg-blue-primary/70 bg-[url('homepage/hero.png')] bg-cover bg-center bg-no-repeat w-full lg:h-[600px] flex justify-evenly overflow-hidden`}>
+      <div className={`flex flex-col gap-6 ${isIntersecting ? "motion-safe:animate-slide-bottom md:motion-safe:animate-slide-left" : ""} md:max-w-[50%] lg:max-w-[37%] px-[clamp(1.25rem,7%,2.5rem)] py-28 md:pt-40 self-center`}>
         <p className="text-white text-5xl [letter-spacing:0.15rem] font-extrabold" >
           Get a Step Closer to <span className="text-brown-primary">Home</span> Ownership
         </p>
@@ -23,7 +40,7 @@ function Hero() {
           </Link>
         </div>
       </div>
-      <div className="md:bg-[url('homepage/white-couple.png')] md:bg-cover md:bg-center md:bg-no-repeat md:w-[465px] md:h-[334px] lg:w-[623px] lg:h-[462px] self-end" role="img" aria-roledescription="a caucasian hetero couple" />
+      <img className={`hidden md:block ${isIntersecting ? "md:motion-safe:animate-slide-right" : ""} md:object-cover md:object-center md:w-[465px] md:h-[334px] lg:w-[623px] lg:h-[462px] self-end`} src={whiteCouple} alt="a man and a woman, both grinning" />
     </section>
   )
 }
