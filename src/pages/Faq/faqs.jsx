@@ -28,20 +28,12 @@ const faqs = [
   {
     title: "I am ready to become a homeowner, what is the next action to take?",
     details: "The RTO process begins with you filling out an application. ",
-    // link: {
-    //   href: "/",
-    //   text: " Kindly contact us now "
-    // },
     link: <Link to="/">Kindly contact us now</Link>,
     postLinkText: " and we will get in touch with you to get the process started and get you on the road to becoming a proud homeowner!",
   },
   {
     title: "How does the Rent-To-Own program work?",
     details: "Please refer to the following page: ",
-    // link: {
-    //   href: "/what-is-rent-to-own",
-    //   text: "'What is rent to own?'."
-    // }
     link: <Link to="/what-is-rent-to-own">What is rent to own?</Link>
   },
   {
@@ -63,10 +55,6 @@ const faqs = [
   {
     title: "My credit is less than perfect, can you still help me?",
     details: "Reach out to tell us your story and we will assess your situation. Need more information? ",
-    // link: {
-    //   href: "/",
-    //   text: "Book a discovery call!"
-    // },
     link: <Link to="/">Book a discovery call!</Link>,
   },
   {

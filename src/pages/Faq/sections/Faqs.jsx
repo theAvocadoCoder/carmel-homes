@@ -7,12 +7,6 @@ function Faqs() {
         {
           faqs.map((faq, index) => (
             <div key={index}>
-              {/* <p>{faq.title}</p>
-              <p>
-                {faq.details}
-                {faq.link && faq.link}
-                {faq.postLinkText && faq.postLinkText}
-              </p> */}
               <FaqCard faq={faq} />
             </div>
           ))
