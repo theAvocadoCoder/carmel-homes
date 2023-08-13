@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { HashLink } from "react-router-hash-link";
 import Button from "global/Button";
+import VideoPlayer from "../components/VideoPlayer";
 
 function WhatIsRTO() {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const whatIsRTORef = useRef(null);
+  const [windowWidth] = useState(window.innerWidth < 1024 ? window.innerWidth * (7/10) : window.innerWidth < 1256 ? 400 : 600);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -17,7 +19,7 @@ function WhatIsRTO() {
     return () => {
       observer.disconnect();
     }
-  }, [])
+  }, []);
 
   const scrollWithOffset = (el) => {
     const yCoordinate = el.getBoundingClientRect().top + window.scrollY;
@@ -25,7 +27,7 @@ function WhatIsRTO() {
     window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
   }
   return (
-    <section ref={whatIsRTORef} className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-32 2xl:gap-44 px-8 lg:px-24 py-12 lg:py-32 [background-image:linear-gradient(to_bottom,black,transparent),url('homepage/what-is-rto.png')] bg-cover bg-center bg-no-repeat overflow-hidden">
+    <section ref={whatIsRTORef} className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 2xl:gap-32 px-8 lg:px-20 py-12 lg:py-32 [background-image:linear-gradient(to_bottom,black,transparent),url('homepage/what-is-rto.png')] bg-cover bg-center bg-no-repeat overflow-hidden">
       <div className={`flex flex-col text-white text-[1rem] gap-8 lg:max-w-[40%]  ${isIntersecting ? "motion-safe:animate-fade-up" : "opacity-0"}`}>
         <h2 className="text-[2rem] font-bold">What is Rent to Own?</h2>
         <p>
@@ -40,8 +42,8 @@ function WhatIsRTO() {
           </Button>
         </HashLink>
       </div>
-      <div className="w-full h-44 lg:w-[50rem] lg:h-[18rem] flex items-center justify-center bg-zinc-400 text-white">
-        Video Placeholder
+      <div className={`${isIntersecting ? "motion-safe:animate-fade-up" : "opacity-0"}`}>
+        <VideoPlayer heigth={windowWidth/1.775147928994083} width={windowWidth} />
       </div>
     </section>
   )
