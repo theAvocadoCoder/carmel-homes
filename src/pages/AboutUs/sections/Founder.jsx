@@ -1,5 +1,4 @@
 
-
 function Founder() {
   return (
     <section className="flex flex-col md:flex-row p-8 items-center md:justify-center">
@@ -9,7 +8,7 @@ function Founder() {
         <p>Our mission is to help provide housing to all.</p>
         <p className="font-bold">Oluwadamilare - Founder</p>
       </div>
-      <div className="bg-[url('aboutus/damilare.webp')] bg-center bg-cover bg-no-repeat h-[clamp(8rem,30vw,19rem)] w-[clamp(15rem,50%,30rem)] rounded-lg" role="img" aria-roledescription="Carmel Homes founder, Oluwadamilare" />
+      <div className="bg-[url('aboutus/damilare.png')] bg-center bg-cover bg-no-repeat h-[clamp(8rem,30vw,19rem)] w-[clamp(15rem,50%,30rem)] rounded-lg" role="img" aria-roledescription="Carmel Homes founder, Oluwadamilare" />
     </section>
   )
 }

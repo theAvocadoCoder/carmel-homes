@@ -40,10 +40,10 @@ function StackedOdds() {
   }
   return (
     <section className="flex flex-col lg:flex-row p-14 items-center justify-center gap-16 lg:gap-28">
-      <div className="flex flex-col gap-4 md:max-w-[70%] lg:w-[min(40%,30rem)]">
+      <div className="flex flex-col gap-4 md:max-w-[70%] lg:w-[min(40%,30rem)] [line-height:1.5rem]">
         <h2 className="text-[1.5rem] font-bold">The odds are stacked against us</h2>
         <p>
-          {"It has never been as difficult to buy a home than it is today. Mortgage lender's rules and restrictions for borrowers are out of date. Endless house pricce increases, residency considerations, and slow wage growth and the cost of living crisis have excluded millions from their homeownership dream."}
+          {"It has never been as difficult to buy a home than it is today. Mortgage lender's rules and restrictions for borrowers are out of date. Endless house price increases, residency considerations, and slow wage growth and the cost of living crisis have excluded millions from their homeownership dream."}
         </p>
         <p>{"It's time for change."}</p>
         <p>
