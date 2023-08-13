@@ -1,5 +1,4 @@
-//eslint-disable-next-line no-unused-vars
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import Button from "global/Button";
 
@@ -34,13 +33,24 @@ function Navbar() {
     },
   ]
 
+  function toggleSideBar() {
+    if (isSidebarOpen) {
+      document.body.style.overflow = "unset";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+    setIsSidebarOpen(state => !state)
+  }
+
   function openContactUsModal() {
-    setIsSidebarOpen(state => !state); 
+    if (isSidebarOpen) setIsSidebarOpen(state => !state); 
     contactUsRef.current.showModal();
+    document.body.style.overflow = "hidden";
   }
 
   function closeContactUsModal() {
     contactUsRef.current.close();
+    document.body.style.overflow = "unset";
   }
 
   return (
@@ -51,7 +61,7 @@ function Navbar() {
       </Link>
 
       {/* Burger Icons */}
-      <button type="button" className={`w-6 h-6 ${isSidebarOpen ? "bg-[url('assets/close-icon.svg')]" : "bg-[url('assets/burger-menu.svg')]"} bg-contain bg-no-repeat flex justify-center items-center text-center p-0 [-webkit-tap-highlight-color:transparent] lg:hidden`} onClick={() => setIsSidebarOpen(state => !state)} />
+      <button type="button" className={`w-6 h-6 ${isSidebarOpen ? "bg-[url('assets/close-icon.svg')]" : "bg-[url('assets/burger-menu.svg')]"} bg-contain bg-no-repeat flex justify-center items-center text-center p-0 [-webkit-tap-highlight-color:transparent] lg:hidden`} onClick={toggleSideBar} />
 
       {/* Menu Links */}
       <div className={`flex-col justify-evenly items-center pb-10 lg:pb-0 text-[16px] font-semibold [font-variant:small-caps] w-screen lg:w-fit h-[calc(100vh-5rem)] lg:h-min bg-stone-200 lg:bg-transparent p-0 absolute lg:static top-20 left-0 ${isSidebarOpen ? "flex bg-white" : "hidden lg:flex bg-white"}`}>
@@ -64,7 +74,7 @@ function Navbar() {
               ["About Us", "/about-us"],
               ["Faq", "/faq"],
               ["Apply Now", "/apply-now"],
-              ["Investment", "/partner-with-us"],
+              ["Partner", "/partner-with-us"],
             ].map((link, id) => (
               <NavLink
                 to={link[1]}
@@ -107,7 +117,7 @@ function Navbar() {
         </Link>
       </div>
 
-      <dialog ref={contactUsRef} className="backdrop:bg-slate-900/40 w-[min(70vw,55rem)] relative px-6 py-12 md:p-16 rounded-md">
+      <dialog ref={contactUsRef} className="backdrop:bg-slate-900/40 w-[min(70vw,55rem)] absolute px-6 py-12 md:p-16 rounded-md">
         <p className="px-auto text-center text-lg xl:text-2xl font-semibold mb-8">{"We'd love to hear from you, send us a message"}</p>
 
         <div className="flex flex-col md:flex-row md:flex-wrap justify-center gap-8 lg:gap-10">
