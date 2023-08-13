@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import Button from "global/Button";
 import carmelPDF from "global/carmel.pdf";
@@ -11,7 +11,7 @@ function FindOutMore() {
   const [pageNumber, setPageNumber] = useState(1);
   const [windowWidth, setWindowWidth] = useState(300);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (window.innerWidth < 768) { 
       setWindowWidth(300)
     } else if (window.innerWidth < 1024) {
@@ -19,12 +19,6 @@ function FindOutMore() {
     } else {
       setWindowWidth(500);
     }
-    console.log("window.innerWidth", window.innerWidth);
-    console.log("result type", typeof window.innerWidth)
-  
-    return () => {
-     
-    };
   }, [])
 
   function onDocumentLoadSucces({ numPages }) {
@@ -51,7 +45,7 @@ function FindOutMore() {
       </div>
       
 
-      <div className=" border-blue-primary border-4 w-[19.25rem] md:w-[calc(50vw+.5rem)] lg:w-[31.75rem] flex flex-col justify-between">
+      <div className=" border-blue-primary border-4 w-[19.25rem] md:w-[calc(50vw+.5rem)] lg:w-[31.75rem] h-16rem md:h-[calc((50vw+.5rem)/1.289473684210526)] lg:h-[23.0625rem] flex flex-col justify-between">
         <div className="bg-blue-primary text-white text-center py-2">
           <p className="font-bold">Carmel Homes Ltd - Rent-to-Own</p>
         </div>
