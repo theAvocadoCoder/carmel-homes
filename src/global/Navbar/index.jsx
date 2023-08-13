@@ -89,7 +89,7 @@ function Navbar() {
                       : ""
                     }`
                 }
-                onClick={() => setIsSidebarOpen(state => !state)}
+                onClick={toggleSideBar}
               >
                 {link[0]}
               </NavLink>
