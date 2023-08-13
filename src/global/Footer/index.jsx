@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Button from "global/Button";
 
 function Footer() {
+
+  const scrollWithOffset = (el) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.scrollY;
+    const yOffset = -80;
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
+  }
+
   return (
     <footer className="bg-blue-primary text-white flex flex-col gap-10 lg:gap-[100px] px-6 lg:px-[min(100px,4vw)] py-8 pb-0 lg:py-[100px] lg:pb-0">
       {/* Content */}
@@ -29,7 +37,9 @@ function Footer() {
           {/* Service */}
           <div className="flex flex-col gap-2 text-xs font-semibold [font-variant:small-caps]">
             <p className="text-lg [font-variant:normal]">Service</p>
-            <Link to="/what-is-rent-to-own#how-it-works">How It Works</Link>
+            <HashLink to="/what-is-rent-to-own#how-it-works" scroll={el => scrollWithOffset(el)}>
+              How It Works
+            </HashLink>
             <Link to="/apply-now">Apply Now</Link>
           </div>
 
