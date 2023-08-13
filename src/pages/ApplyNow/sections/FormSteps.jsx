@@ -4,7 +4,6 @@ import FormButtons from "../components/FormButtons";
 import FormSubmitted from "../components/FormSubmitted";
 import { formStepDetails as details } from "../formStepDetails";
 import { useForm, Controller } from "react-hook-form";
-// import { ErrorMessage } from "@hookform/error-message";
 import { PhoneInput } from "react-simple-phone-input";
 import "react-simple-phone-input/dist/style.css";
 
@@ -12,7 +11,6 @@ function FormSteps() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isFormSubmitted, toggleIsFormSubmitted] = useState(false);
 
-  //eslint-disable-next-line no-unused-vars
   const { handleSubmit, register, control, formState: {errors}, watch, setValue } = useForm({
     defaultValues: {
       "firstName": "",
@@ -46,14 +44,12 @@ function FormSteps() {
   }, [currentStep, isFormSubmitted]);
 
   function onSubmit(data, e) {
-    console.log("onSubmit was triggered");
     console.log("data", data);
     console.log("e", e);
     toggleIsFormSubmitted(state => !state);
   }
 
   function onError(errors) {
-    console.log("onError was triggered");
     if (errors["methodOfContact"]) {
       setCurrentStep(state => {if (state) return 4});
     } else {
@@ -84,7 +80,7 @@ function FormSteps() {
               <option value="" className="text-gray-400">--Please pick an option--</option>
               {
                 input.options.map((option, index) => (
-                  <option value={option.value} key={index}>{option.text}</option>
+                  <option value={option.value} className="text-blue-primary"  key={index}>{option.text}</option>
                 ))
               }
             </select>
@@ -172,7 +168,7 @@ function FormSteps() {
                       lgLayout = (step.step == 3 || (step.step == 2 && !field.noLayoutChange)) ? "md:flex-row md:w-full md:justify-between" : "";
                       return (
                         <label className={`relative flex flex-col ${lgLayout} p-2 ${field.required && errors[field.name] ? "mb-10" : ""} relative w-full md:w-[clamp(18rem,45%,40rem)] justify-start`} key={fieldIndex} htmlFor={field.name}>
-                          <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{`${field.label}${field.required ? "*": ""}`}: </span>
+                          <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{`${field.label}`}<span className="text-2xl font-bold">{field.required ? "*": ""}</span>: </span>
                           {renderInput(field)}
                           {errors[field.name] && (<span className={`absolute top-[100%] text-red-600 text-sm w-full md:w-[clamp(10rem,90%,18rem)]`} role="alert">*{errors[field.name].message}</span>)}
                         </label>
@@ -234,7 +230,7 @@ function FormSteps() {
               </form>
 
               {/* Required Fields Info Text */}
-              <span className="z-[2] absolute bottom-2 pointer-events-none text-xs font-semibold">*Required fields</span>
+              <span className="z-[1] absolute bottom-2 pointer-events-none text-xs font-semibold"><span className="text-xl font-bold">*</span> Required fields</span>
             </>
           )
           : (
