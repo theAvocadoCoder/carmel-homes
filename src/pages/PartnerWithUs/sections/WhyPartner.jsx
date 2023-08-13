@@ -1,5 +1,4 @@
 
-
 function WhyPartner() {
   const whyPartnerBullets = [
     {
