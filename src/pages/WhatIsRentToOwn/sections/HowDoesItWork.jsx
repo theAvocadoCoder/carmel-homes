@@ -36,7 +36,7 @@ function HowDoesItWork() {
       title: "Buy the home when you’re ready",
       img: "bg-[url('whatisrenttoown/how-it-works-5.webp')]",
       text: [
-        "You can buy the home from us whenever you want.If it’s before the end of your lease you’ll need to pay an early exit fee.",
+        "You can buy the home from us whenever you want. If it’s before the end of your lease you’ll need to pay an early exit fee.",
         "The buy-back price for your home will be the price we paid for it, plus the costs we incurred buying it, minus all your converted payments."
       ],      
     },
@@ -65,7 +65,7 @@ function HowDoesItWork() {
         {/* Slider */}
         <ul className="flex lg:flex-col gap-6 justify-between relative">
           {[...Array(5)].map((_, index) => (
-            <li key={index} className={`font-semibold lg:font-bold lg:text-[1.75rem] [line-height:1] px-3 md:px-4 lg:px-6 py-2 md:py-3 lg:py-4 rounded-[100%] ${activeSlide == index + 1 ? "bg-brown-primary text-white" : "bg-brown-accent text-blue-primary"} z-[1]`} onClick={() => {setActiveSlide(index+1)}}>{index + 1}</li>
+            <li key={index} className={`font-semibold lg:font-bold lg:text-[1.75rem] [line-height:1] px-3 md:px-4 lg:px-6 py-2 md:py-3 lg:py-4 rounded-[100%] cursor-pointer ${activeSlide == index + 1 ? "bg-brown-primary text-white" : "bg-brown-accent text-blue-primary"} z-[1]`} onClick={() => {setActiveSlide(index+1)}}>{index + 1}</li>
           ))}
           <div className="absolute lg:h-[calc(100%-2rem)] w-[calc(100%-2rem)] lg:w-0 left-3 lg:left-[50%] top-[50%] lg:top-3 border-t-[0.3125rem] lg:border-t-0 lg:border-l-[0.3125rem] border-brown-accent border-dotted -z-[0]" />
         </ul>
