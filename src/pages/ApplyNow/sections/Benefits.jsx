@@ -4,7 +4,7 @@ function Benefits() {
     {
       icon: "bg-[url('applynow/apply-1.svg')]",
       title: "Response in 24 hours",
-      details: "We aim to get back to you and start the process as soon as poosible",
+      details: "We aim to get back to you and start the process as soon as possible",
     },
     {
       icon: "bg-[url('applynow/apply-2.svg')]",
