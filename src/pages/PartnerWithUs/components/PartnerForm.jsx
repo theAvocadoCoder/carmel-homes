@@ -12,15 +12,11 @@ function PartnerForm() {
   });
   const formValues = watch();
 
-  //eslint-disable-next-line no-unused-vars
   function onSubmit(data) {
-    console.log("onSubmit was triggered");
     console.log("data:", data);
   }
 
-  //eslint-disable-next-line no-unused-vars
   function onError(errors) {
-    console.log("onError was triggered");
     console.log("errors:", errors)
   }
 
@@ -53,8 +49,11 @@ function PartnerForm() {
                 ${formValues["occupation"] == "" && "text-gray-400"}
                 w-full`}>
             <option value="" className="text-gray-400">--Select an occupation--</option>
+            <option value="Investor">Investor</option>
             <option value="Real Estate Agent">Real Estate Agent</option>
             <option value="Mortgage Broker">Mortgage Broker</option>
+            <option value="Accountant">Accountant</option>
+            <option value="Conveyancer">Conveyancer</option>
             <option value="other">Other</option>
           </select>
         </label>
