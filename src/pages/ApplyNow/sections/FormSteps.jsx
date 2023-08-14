@@ -62,7 +62,7 @@ function FormSteps() {
       case "select":
         return (
           <>
-            <div className="bg-[url('assets/chevron-bottom.svg')] bg-no-repeat bg-center bg-contain w-4 h-4 right-[1.2rem] bottom-[1.3rem] absolute z-[2]" role="img" aria-roledescription="icon" />
+            <div className="bg-[url('assets/chevron-bottom.svg')] bg-no-repeat bg-center bg-contain w-4 h-4 right-[1.2rem] bottom-[1.3rem] absolute z-[2] pointer-events-none" role="img" aria-roledescription="icon" />
             <select
               {...register(input.name, {required: input.required ? input.required() : false})}
               className={`
@@ -77,7 +77,7 @@ function FormSteps() {
               name={input.name}
               id={input.name}
             >
-              <option value="" className="text-gray-400">--Please pick an option--</option>
+              <option value="" className="text-gray-400">--Please select an option--</option>
               {
                 input.options.map((option, index) => (
                   <option value={option.value} className="text-blue-primary"  key={index}>{option.text}</option>
@@ -97,7 +97,7 @@ function FormSteps() {
               name={input.options[checkboxIndex].value}
               type={input.type}
               placeholder={input.placeholder}
-              className="border-2 border-brown-gray rounded-md form-checkbox text-brown-primary focus:outline-brown-accent"
+              className="border-2 border-brown-gray rounded-md form-checkbox text-brown-primary focus:outline-brown-accent cursor-pointer"
             />
           </>
         );
@@ -146,7 +146,8 @@ function FormSteps() {
               name={input.name} 
               type={input.type} 
               placeholder={input.placeholder} 
-              className={`bg-white rounded-md p-2 w-full`}
+              onChange={e=>{if(input.type=="date")setValue("moveInDate", e.target.value)}}
+              className={`bg-white rounded-md p-2 w-full ${formValues["moveInDate"] == "" && input.type == "date" ? "text-gray-400" : "text-blue-primary"}`}
             />
           </>
         );
@@ -156,55 +157,49 @@ function FormSteps() {
   function renderStep(step) {
 
     return (
-      <div key={step.step} className={`${step.step == currentStep ? "flex flex-col" : "hidden"} w-full p-2 gap-2`}>
-        {
-          step.inputs.map((input, index) => {
-            let lgLayout = ""; 
-            if (input instanceof Array) {
-              return (
-                <div key={index} className="flex flex-col md:flex-row w-full md:justify-between">
-                  {
-                    input.map((field, fieldIndex) => {
-                      lgLayout = (step.step == 3 || (step.step == 2 && !field.noLayoutChange)) ? "md:flex-row md:w-full md:justify-between" : "";
-                      return (
-                        <label className={`relative flex flex-col ${lgLayout} p-2 ${field.required && errors[field.name] ? "mb-10" : ""} relative w-full md:w-[clamp(18rem,45%,40rem)] justify-start`} key={fieldIndex} htmlFor={field.name}>
-                          <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{`${field.label}`}<span className="text-2xl font-bold">{field.required ? "*": ""}</span>: </span>
-                          {renderInput(field)}
-                          {errors[field.name] && (<span className={`absolute top-[100%] text-red-600 text-sm w-full md:w-[clamp(10rem,90%,18rem)]`} role="alert">*{errors[field.name].message}</span>)}
-                        </label>
-                      );
-                    })
-                  }
-                </div>
-              )
-            } else {
-              lgLayout = (step.step == 3 || (step.step == 2 && !input.noLayoutChange)) ? "md:flex-row md:justify-between md:gap-2" : "";
-              return (
-                input.type != "checkbox" ? (
-                  <label className={`flex flex-col ${lgLayout} p-2 relative justify-between w-full ${input.other && formValues["howDidYouHearAboutUs"] == "other" ? "block" : input.other ? "hidden" : ""}`} key={index} htmlFor={input.name}>
-                    <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{input.label}: </span>
-                    {renderInput(input)}
+      <div key={step.step} className={`${step.step == currentStep ? "flex flex-col" : "h-0 opacity-0 pointer-events-none"} w-full p-2 gap-2`}>
+        {step.inputs.map((input, index) => {
+          let lgLayout = ""; 
+          if (input instanceof Array) {return (
+            <div key={index} className="flex flex-col md:flex-row w-full md:justify-between">
+              {input.map((field, fieldIndex) => {
+                lgLayout = (step.step == 3 || (step.step == 2 && !field.noLayoutChange)) ? "md:flex-row md:w-full md:justify-between" : "";
+                return (
+                  <label className={`relative flex flex-col ${lgLayout} p-2 ${field.required && errors[field.name] ? "mb-10" : ""} relative w-full md:w-[clamp(18rem,45%,40rem)] justify-start`} key={fieldIndex} htmlFor={field.name}>
+                    <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{`${field.label}`}<span className="text-2xl font-bold">{field.required ? "*": ""}</span>: </span>
+                    {renderInput(field)}
+                    {errors[field.name] && (<span className={`absolute top-[100%] text-red-600 text-sm w-full md:w-[clamp(10rem,90%,18rem)]`} role="alert">*{errors[field.name].message}</span>)}
                   </label>
-                ) :
-                  (
-                    <div className={`flex flex-col sm:flex-row p-2 md:justify-between md:gap-2`} key={index} htmlFor={input.name}>
-                      <legend className={`${lgLayout != "" && "flex w-full md:w-[clamp(10rem,40%,18rem)]"}`}>{input.label}: </legend>
-                      <div className="flex flex-col self-end md:self-auto w-[clamp(10rem,70%,18rem)] p-1">
-                        {
-                          input.options.map((option, index) => (
-                            <div key={index} className="flex gap-2 items-center">
-                              {renderInput(input, index)}
-                              <label htmlFor={option.value}>{ option.label }</label>
-                            </div>
-                          ))
-                        }
-                      </div>
-                  </div>
-                  )
-              )
-            }
-          })
-        }
+                );
+              })}
+            </div>
+          )} else {
+            lgLayout = (step.step == 3 || (step.step == 2 && !input.noLayoutChange)) ? "md:flex-row md:justify-between md:gap-2" : "";
+            return (
+              input.type != "checkbox" ? (
+                <label className={`flex flex-col ${lgLayout} p-2 relative justify-between w-full ${input.other && formValues["howDidYouHearAboutUs"] == "other" ? "block" : input.other ? "hidden" : ""}`} key={index} htmlFor={input.name}>
+                  <span className={`${lgLayout != "" && "w-full md:w-[clamp(10rem,50%,18rem)]"}`}>{input.label}: </span>
+                  {renderInput(input)}
+                </label>
+              ) :
+                (
+                  <div className={`flex flex-col sm:flex-row p-2 md:justify-between md:gap-2`} key={index} htmlFor={input.name}>
+                    <legend className={`${lgLayout != "" && "flex w-full md:w-[clamp(10rem,40%,18rem)]"}`}>{input.label}: </legend>
+                    <div className="flex flex-col self-end md:self-auto w-[clamp(10rem,70%,18rem)] p-1">
+                      {
+                        input.options.map((option, index) => (
+                          <div key={index} className="flex gap-2 items-center">
+                            {renderInput(input, index)}
+                            <label htmlFor={option.value}>{ option.label }</label>
+                          </div>
+                        ))
+                      }
+                    </div>
+                </div>
+                )
+            )
+          }
+        })}
       </div>
     )
 
