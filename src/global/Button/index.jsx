@@ -5,6 +5,7 @@ Button.propTypes = {
   isNavbarButton: PropTypes.bool,
   isDisabled: PropTypes.bool,
   className: PropTypes.string,
+  onClick: PropTypes.func,
   children: PropTypes.string.isRequired,
   attributes: PropTypes.object,
 }
@@ -19,7 +20,7 @@ function Button(props) {
   }
 
   return (
-    <button className={`${buttonStates[props.theme] || ""} ${buttonStates.hover} ${buttonStates.disabled} py-4 px-6 text-sm lg:text-lg font-bold rounded-[10px] ${props.isNavbarButton && "py-[0.5rem] [font-variant:small-caps]"} ${props.className}`} disabled={props.isDisabled} {...props.attributes}>
+    <button className={`${buttonStates[props.theme] || ""} ${buttonStates.hover} ${buttonStates.disabled} py-4 px-6 text-sm lg:text-lg font-bold rounded-[10px] ${props.isNavbarButton && "py-[0.5rem] [font-variant:small-caps]"} ${props.className}`} disabled={props.isDisabled} {...props.attributes} onClick={props.onClick}>
       {props.children}
     </button>
   )
