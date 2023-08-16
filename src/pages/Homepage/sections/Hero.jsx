@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import Button from "global/Button";
 import { Link } from "react-router-dom";
+import { InlineWidget } from "react-calendly";
 import whiteCouple from "homepage/white-couple.png";
 
 function Hero() {
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const calendlyRef = useRef(null);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -18,7 +21,20 @@ function Hero() {
     return () => {
       observer.disconnect();
     }
-  }, [])
+  }, []);
+
+  function toggleCalendlyDialog() {
+    if (isDialogOpen) {
+      calendlyRef.current?.close();
+      setIsDialogOpen(false);
+      document.body.style.overflow = "unset";
+    } else {
+      calendlyRef.current?.showModal();
+      setIsDialogOpen(true);
+      document.body.style.overflow = "hidden";
+    }
+    console.log("the toggle calendly function fired");
+  }
 
   return (
     <section ref={heroRef} className={`[background-blend-mode:overlay] bg-blue-primary/70 bg-[url('homepage/hero.png')] bg-cover bg-center bg-no-repeat w-full lg:h-[600px] flex justify-evenly overflow-hidden`}>
@@ -33,11 +49,20 @@ function Hero() {
             </Button>
           </Link>
 
-          <Link to="/">
-            <Button theme="secondary" className="px-4 py-3 shadow-slate-200 shadow-sm">
-              Request a Callback
-            </Button>
-          </Link>
+          <Button theme="secondary" className="px-4 py-3 shadow-slate-200 shadow-sm" onClick={toggleCalendlyDialog}>
+            Request a Callback
+          </Button>
+
+          <dialog ref={calendlyRef} className="backdrop:bg-slate-900/40 open:w-[min(70vw,55rem)] open:h-[90%] absolute py-10 md:py-16 rounded-md open:flex justify-center">
+            <InlineWidget 
+              url="https://calendly.com/carmelhomesltd/30min"
+              styles={{
+                height: "100%",
+                width: "100%",
+               }}
+            />
+            <button className="absolute right-4 top-4 h-4 w-4 bg-[url(assets/close-icon.svg)] bg-contain bg-center bg-no-repeat cursor-pointer" onClick={toggleCalendlyDialog} />
+          </dialog>
         </div>
       </div>
       <img className={`hidden md:block ${isIntersecting ? "md:motion-safe:animate-slide-right" : ""} md:object-cover md:object-center md:w-[465px] md:h-[334px] lg:w-[623px] lg:h-[462px] self-end`} src={whiteCouple} alt="a man and a woman, both grinning" />
