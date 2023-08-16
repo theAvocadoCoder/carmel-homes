@@ -157,7 +157,7 @@ function FormSteps() {
   function renderStep(step) {
 
     return (
-      <div key={step.step} className={`${step.step == currentStep ? "flex flex-col" : "h-0 opacity-0 pointer-events-none"} w-full p-2 gap-2`}>
+      <div key={step.step} className={`w-full p-2 gap-2 ${step.step == currentStep ? "flex flex-col" : "opacity-0 pointer-events-none absolute"}`}>
         {step.inputs.map((input, index) => {
           let lgLayout = ""; 
           if (input instanceof Array) {return (
