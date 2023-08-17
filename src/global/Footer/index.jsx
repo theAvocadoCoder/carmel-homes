@@ -24,7 +24,6 @@ function Footer() {
       setIsDialogOpen(true);
       document.body.style.overflow = "hidden";
     }
-    console.log("the toggle calendly function fired");
   }
 
   return (
@@ -83,7 +82,7 @@ function Footer() {
                 Request a Callback
               </Button>
 
-              <dialog ref={footerCalendlyRef} className="backdrop:bg-slate-900/40 open:w-[min(70vw,55rem)] open:h-[90%] fixed open:bottom-0 py-10 md:py-16 rounded-md open:flex justify-center">
+              <dialog ref={footerCalendlyRef} className="backdrop:bg-slate-900/50 open:w-[min(95vw,55rem)] open:h-[90%] fixed open:bottom-0 px-3 sm:px-6 py-8 sm:py-10 md:py-16 rounded-md open:flex justify-center">
                 <InlineWidget 
                   url="https://calendly.com/carmelhomesltd/30min"
                   styles={{
