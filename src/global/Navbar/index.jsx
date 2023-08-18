@@ -34,16 +34,16 @@ function Navbar() {
   ]
 
   function toggleSideBar() {
-    if (isSidebarOpen) {
-      document.body.style.overflow = "unset";
-    } else {
-      document.body.style.overflow = "hidden";
+    if (window.innerWidth < 1024) {
+      document.body.style.overflow = isSidebarOpen
+        ? "unset"
+        : "hidden";
+      setIsSidebarOpen(state => !state);
     }
-    setIsSidebarOpen(state => !state)
   }
 
   function openContactUsModal() {
-    if (isSidebarOpen) setIsSidebarOpen(state => !state); 
+    if (isSidebarOpen && window.innerWidth < 1024) setIsSidebarOpen(state => !state); 
     contactUsRef.current.showModal();
     document.body.style.overflow = "hidden";
   }
