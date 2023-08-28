@@ -1,6 +1,8 @@
 //eslint-disable-next-line no-unused-vars
 import React from "react";
 
+import { Helmet } from "react-helmet";
+
 import Hero from "./sections/Hero";
 import HowWeWork from "./sections/HowWeWork";
 import WhatIsRTO from "./sections/WhatIsRTO";
@@ -11,6 +13,10 @@ import BeginJourney from "global/BeginJourney";
 function Homepage() {
   return (
     <>
+      <Helmet>
+        <title>Carmel Homes Ltd</title>
+        <meta name="description" content="" />
+      </Helmet>
       <Hero />
       <HowWeWork />
       <WhatIsRTO />
