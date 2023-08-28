@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet";
+
 //eslint-disable-next-line no-unused-vars
 import policyText from "./policy";
 //eslint-disable-next-line no-unused-vars
@@ -11,6 +13,10 @@ function PrivacyPolicy() {
     )
   return (
     <>
+      <Helmet>
+        <title>Carmel Homes Ltd - Privacy Policy</title>
+        <meta name="description" content="" />
+      </Helmet>
       <section className="p-8 md:p-16 lg:p-36 py-4 md:py-8 lg:py-16">
         <h1 className="text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] font-extrabold">Privacy Policy</h1>
         <span>Last updated: January 02, 2023</span>
