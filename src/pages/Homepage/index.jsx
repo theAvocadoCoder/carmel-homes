@@ -15,7 +15,7 @@ function Homepage() {
     <>
       <Helmet>
         <title>Carmel Homes Ltd</title>
-        <meta name="description" content="" />
+        <meta name="description" content="Home ownership in a few clicks. Get in touch tell us your story, so that we can get an overview of your challenges and support you." />
       </Helmet>
       <Hero />
       <HowWeWork />
