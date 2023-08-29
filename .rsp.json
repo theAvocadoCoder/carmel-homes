@@ -8,6 +8,7 @@
     "partner-with-us",
     "privacy-policy"
   ],
+  "buildDirectory": "./dist",
   "engine": {
     "launchOptions": {
       "args": ["--no-sandbox", "--disable-setuid-sandbox"],

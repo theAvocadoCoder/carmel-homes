@@ -23,8 +23,5 @@ export default defineConfig({
       ...pageImgPaths,
       "src": "/src/"
     }
-  },
-  build: {
-    outDir: "/build/"
   }
 })
