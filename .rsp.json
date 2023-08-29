@@ -3,10 +3,10 @@
     "/",
     "/about-us",
     "/apply-now",
-    "what-is-rent-to-own",
-    "faq",
-    "partner-with-us",
-    "privacy-policy"
+    "/what-is-rent-to-own",
+    "/faq",
+    "/partner-with-us",
+    "/privacy-policy"
   ],
   "buildDirectory": "./dist",
   "engine": {
