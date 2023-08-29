@@ -12,12 +12,14 @@ import WhatIsRentToOwn from "./pages/WhatIsRentToOwn";
 import PartnerWithUs from "./pages/PartnerWithUs";
 import Faq from "./pages/Faq";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import _404 from "./pages/404";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <_404 />,
     children: [
       {
         index: true,
