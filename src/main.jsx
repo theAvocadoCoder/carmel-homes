@@ -49,10 +49,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-],
-{
-  basename: "/carmel-homes"
-}
+]
 );
 
 const rootElement = ReactDOM.createRoot(document.getElementById("root"));
