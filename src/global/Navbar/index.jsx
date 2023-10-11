@@ -8,15 +8,15 @@ function Navbar() {
 
   const contactUsLinks = [
     {
-      url: "https://wa.me/19053410200",
+      url: "https://wa.me/15874172421",
       icon: "bg-[url(assets/whatsapp-logo-blue.svg)]",
-      text: "+1 (905) 3410200",
+      text: "+1 (587) 4172421",
       alt: "whatsapp logo",
     },
     {
-      url: "tel:+19053410200",
+      url: "tel:+15874172421",
       icon: "bg-[url(assets/phone-icon-blue.svg)]",
-      text: "+1 (905) 3410200",
+      text: "+1 (587) 4172421",
       alt: "phone",
     },
     {
