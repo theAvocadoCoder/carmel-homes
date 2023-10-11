@@ -409,7 +409,7 @@ const policyText = [
       },
       {
         text: "By phone number: ",
-        link: ["tel:+15146006371","+15146006371"]
+        link: ["tel:+15874172421","+1 (587) 4172421"]
       },
       {
         text: "By mail: ",
