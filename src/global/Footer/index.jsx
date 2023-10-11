@@ -75,7 +75,7 @@ function Footer() {
           {/* Contact */}
           <div className="flex flex-col items-start gap-2 text-xs font-semibold [font-variant:small-caps]">
             <p className="text-lg [font-variant:normal]">Contact</p>
-            <Link to="tel:+19053410200">+1 (905) 3410200</Link>
+            <Link to="tel:+15874172421">+1 (587) 4172421</Link>
             <Link to="mailto:info@carmelhomesltd.com">info@carmelhomesltd.com</Link>
             <div className="mt-1 lg:mt-2">
               <Button theme="secondary" isNavbarButton={true} onClick={toggleCalendlyDialog}>
